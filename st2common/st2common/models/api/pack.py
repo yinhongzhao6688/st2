@@ -406,26 +406,17 @@ class PackRegisterRequestAPI(BaseAPI):
 class PackSearchRequestAPI(BaseAPI):
     schema = {
         "type": "object",
-        "oneOf": [
-            {
-                "properties": {
-                    "query": {
-                        "type": "string",
-                        "required": True,
-                    },
-                },
-                "additionalProperties": False,
+        "properties": {
+            "query": {
+                "type": "string",
+                "required": False,
             },
-            {
-                "properties": {
-                    "pack": {
-                        "type": "string",
-                        "required": True,
-                    },
-                },
-                "additionalProperties": False,
-            },
-        ]
+            "pack": {
+                "type": "string",
+                "required": False,
+            }
+        },
+        "additionalProperties": False,
     }
 
 

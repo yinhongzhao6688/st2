@@ -156,13 +156,11 @@ def get_pack_from_index(pack):
     return index.get(pack)
 
 
-def search_pack_index(query, exclude=None, priority=None, case_sensitive=True):
+def search_pack_index(query='', exclude=None, priority=None, case_sensitive=True):
     """
     Search the pack index by query.
     Returns a list of matches for a query.
     """
-    if not query:
-        raise ValueError('Query must be specified.')
 
     if not exclude:
         exclude = EXCLUDE_FIELDS
