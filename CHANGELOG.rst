@@ -29,6 +29,13 @@ Added
 
   (new feature) #2175 #3657 #3729
 
+Changed
+~~~~~~~
+
+* Update various dependencies to latest stable versions - kombu (4.1.0), amqp (2.2.2), pymongo
+  (3.5.1), semver (2.3.0), paramiko (2.3.0), prompt-toolkit (1.0.15), tooz (1.59.0), flex (6.11.0),
+  prance (0.7.0).
+
 Fixed
 ~~~~~
 
