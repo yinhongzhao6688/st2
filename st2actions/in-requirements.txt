@@ -5,6 +5,7 @@ eventlet
 jinja2
 kombu
 git+https://github.com/StackStorm/python-mistralclient.git#egg=python-mistralclient
+git+https://github.com/StackStorm/orchestra.git#egg=orchestra
 oslo.config
 oslo.utils
 requests

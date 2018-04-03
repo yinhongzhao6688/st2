@@ -97,17 +97,19 @@ class OrchestraRunnerTest(DbTestCase):
         liveaction = LiveActionDB(action=wf_meta['name'])
         liveaction, execution = action_service.request(liveaction)
         liveaction = LiveAction.get_by_id(str(liveaction.id))
+        result = liveaction.result
 
         self.assertTrue(liveaction.action_is_workflow)
-        self.assertEqual(liveaction.status, action_constants.LIVEACTION_STATUS_RUNNING)
+        self.assertEqual(liveaction.status, action_constants.LIVEACTION_STATUS_RUNNING, result)
 
-        wf_exs = WorkflowExecution.query(liveaction=str(liveaction.id))
+        wf_exs = WorkflowExecution.query(action_execution=str(execution.id))
 
         self.assertEqual(len(wf_exs), 1)
         self.assertIsNotNone(wf_exs[0].id)
         self.assertGreater(wf_exs[0].rev, 0)
         self.assertIn('workflow_execution', liveaction.context)
         self.assertEqual(liveaction.context['workflow_execution'], str(wf_exs[0].id))
+        self.assertEqual(wf_exs[0].status, action_constants.LIVEACTION_STATUS_REQUESTED)
         self.assertIsNotNone(wf_exs[0].graph)
         self.assertTrue(isinstance(wf_exs[0].graph, dict))
         self.assertIn('nodes', wf_exs[0].graph)
